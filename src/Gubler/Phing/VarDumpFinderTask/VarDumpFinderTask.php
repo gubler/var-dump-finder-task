@@ -7,7 +7,7 @@
  * @license MIT License
  */
 
-namespace Gubler\Phing\VarDumpFinderTask
+namespace Gubler\Phing\VarDumpFinderTask;
 
 /**
  * Phing task to check fileset for instances of var_dump()
