@@ -1,0 +1,3 @@
+<project>
+    <taskdef name="vardumpfinder" classname="Gubler\Phing\VarDumpFinderTask\VarDumpFinderTask" />
+</project>

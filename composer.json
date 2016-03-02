@@ -1,0 +1,31 @@
+{
+    "name": "gubler/var-dump-finder-task",
+    "description": "Finds instances of var_dump() in your source code.",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "type": "library",
+    "keywords": [
+        "Phing",
+        "var_dump"
+    ],
+    "authors": [
+        {
+            "name": "Daryl Gubler",
+            "email": "daryl@dev88.co"
+        }
+    ],
+    "require": {
+        "php": "^5.5|^7.0",
+        "phing/phing": "^2.8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gubler\\Phing\\VarDumpFinderTask\\": "src/Gubler/Phing/VarDumpFinderTask"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gubler\\Phing\\VarDumpFinderTask\\": "tests/Gubler/Phing/VarDumpFinderTask"
+        }
+    }
+}
