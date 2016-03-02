@@ -23,7 +23,7 @@ You can import the task into your build:
 Or define the `vardumpfinder` task in your `build.xml` file:
 
 ```xml
-     <taskdef name="vardumpfinder" classname="Gubler\Phing\VarDumpFinderTask\VarDumpFinderTask" />
+<taskdef name="vardumpfinder" classname="Gubler\Phing\VarDumpFinderTask\VarDumpFinderTask" />
 ```
 
 ## Usage
