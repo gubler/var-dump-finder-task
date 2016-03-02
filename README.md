@@ -1,5 +1,7 @@
 # var-dump-finder-task
 
+[![Build Status](https://travis-ci.org/gubler/var-dump-finder-task.svg?branch=master)](https://travis-ci.org/gubler/var-dump-finder-task)
+
 [Phing](https://www.phing.info/) tasks to check for `var_dump()` usage in
 your source code. This is helpful as part of precommit checks to make
 sure you don't commit debug code into your repository.
