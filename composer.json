@@ -18,6 +18,12 @@
         "php": "^5.5|^7.0",
         "phing/phing": "^2.8.0"
     },
+    "require-dev": {
+        "phpunit/php-code-coverage": "^2.1.0",
+        "phpunit/phpunit": "^4.8",
+        "squizlabs/php_codesniffer": "^2.3",
+        "phpdocumentor/phpdocumentor": "^2.8"
+    },
     "autoload": {
         "psr-4": {
             "Gubler\\Phing\\VarDumpFinderTask\\": "src/Gubler/Phing/VarDumpFinderTask"
