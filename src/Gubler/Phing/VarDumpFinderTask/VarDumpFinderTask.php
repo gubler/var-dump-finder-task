@@ -19,13 +19,13 @@ class VarDumpFinderTask extends \Task
     const VAR_DUMP = 'var_dump';
 
     /** @var array */
-    protected $_fileSets = array();
+    protected $fileSets = array();
 
     /** @var bool */
-    protected $_findInComments = false;
+    protected $findInComments = false;
 
     /** @var bool */
-    protected $_haltOnMatch = false;
+    protected $haltOnMatch = false;
 
     /**
      * Phing entry point
@@ -34,14 +34,14 @@ class VarDumpFinderTask extends \Task
      */
     public function main()
     {
-        if (!count($this->_fileSets)) {
+        if (!count($this->fileSets)) {
             throw new \BuildException("Missing a nested fileset");
         }
 
         $project = $this->getProject();
         $violations = array();
 
-        foreach ($this->_fileSets as $fs) {
+        foreach ($this->fileSets as $fs) {
             $files = $fs->getDirectoryScanner($project)->getIncludedFiles();
             $dir   = $fs->getDir($project)->getPath();
 
@@ -58,7 +58,7 @@ class VarDumpFinderTask extends \Task
             $this->log($violation);
         }
 
-        if (!empty($violations) && $this->_haltOnMatch) {
+        if (!empty($violations) && $this->haltOnMatch) {
             throw new \BuildException('Found traces of var_dump in filesets');
         }
     }
@@ -82,9 +82,8 @@ class VarDumpFinderTask extends \Task
         $violations = array();
 
         foreach ($tokens as $token) {
-            if (
-                is_array($token) &&
-                $this->tokenIsInvalidVarDump($token, $this->_findInComments)
+            if (is_array($token) &&
+                $this->tokenIsInvalidVarDump($token, $this->findInComments)
             ) {
                 $violations[] = $token[2];
             }
@@ -105,8 +104,7 @@ class VarDumpFinderTask extends \Task
     public function tokenIsInvalidVarDump($token, $findComments = false)
     {
         // Find non-comment var_dump();
-        if (
-            token_name($token[0]) == 'T_STRING' &&
+        if (token_name($token[0]) == 'T_STRING' &&
             $token[1] == self::VAR_DUMP
         ) {
             return true;
@@ -114,8 +112,7 @@ class VarDumpFinderTask extends \Task
 
         // find commented var_dump
         $pattern = '/.*'.self::VAR_DUMP.'.*/us';
-        if (
-            $findComments &&
+        if ($findComments &&
             (
                 token_name($token[0]) == 'T_COMMENT' ||
                 token_name($token[0]) == 'T_DOC_COMMENT'
@@ -134,32 +131,32 @@ class VarDumpFinderTask extends \Task
      */
     public function createFileSet()
     {
-        $num = array_push($this->_fileSets, new \FileSet());
+        $num = array_push($this->fileSets, new \FileSet());
 
-        return $this->_fileSets[$num-1];
+        return $this->fileSets[$num-1];
     }
 
     /**
      * Set if task should halt on match
      *
-     * @param null|bool $haltOnMatch
+     * @param bool $haltOnMatch
      */
     public function setHaltOnMatch($haltOnMatch = false)
     {
         if (is_bool($haltOnMatch)) {
-            $this->_haltOnMatch = $haltOnMatch;
+            $this->haltOnMatch = $haltOnMatch;
         }
     }
 
     /**
      * Set if task should should find var_dump() in comments
      *
-     * @param null|bool $findInComments
+     * @param bool $findInComments
      */
     public function setFindInComments($findInComments = false)
     {
         if (is_bool($findInComments)) {
-            $this->_findInComments = $findInComments;
+            $this->findInComments = $findInComments;
         }
     }
 }
